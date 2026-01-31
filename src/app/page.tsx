@@ -206,7 +206,7 @@ export default function MintPage() {
             {formatSupply()}
           </p>
           <p className="text-[var(--foreground-muted)] text-xs tracking-[0.3em] uppercase mt-4">
-            // WITNESSES RECORDED
+            {"// WITNESSES RECORDED"}
           </p>
         </div>
 
