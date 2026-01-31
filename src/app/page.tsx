@@ -194,14 +194,19 @@ export default function MintPage() {
       className="min-h-screen flex items-center justify-center p-6"
     >
       <div className="w-full max-w-md space-y-8">
-        {/* Supply Counter */}
-        <div className="text-center">
-          <p className="text-[var(--foreground-muted)] text-sm tracking-wider uppercase">
-            Total Witnesses
+        {/* Supply Counter - Industrial Data Art */}
+        <div className="text-center py-8">
+          <p
+            className="text-8xl font-black text-[var(--foreground)] tracking-tighter leading-none"
+            style={{
+              fontFamily:
+                "'Arial Narrow', Impact, 'Helvetica Neue', sans-serif",
+            }}
+          >
+            {formatSupply()}
           </p>
-          <p className="text-3xl font-light text-[var(--foreground)] mt-1">
-            {formatSupply()}{" "}
-            <span className="text-[var(--foreground-muted)]">/ Unlimited</span>
+          <p className="text-[var(--foreground-muted)] text-xs tracking-[0.3em] uppercase mt-4">
+            // WITNESSES RECORDED
           </p>
         </div>
 
