@@ -17,7 +17,8 @@ import { client } from "./client";
 // ============================================
 // CONFIGURATION
 // ============================================
-const CONTRACT_ADDRESS = "0x293fc126bB74363F75c160B43A574f3C40515df5";
+const CONTRACT_ADDRESS = process.env
+  .NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`;
 const TOKEN_ID = 0n;
 const QUANTITY_OPTIONS = [1, 10, 50, 100];
 
@@ -157,7 +158,7 @@ export default function MintPage() {
         className="min-h-screen flex items-center justify-center p-6"
       >
         <div className="text-center space-y-6 max-w-md">
-          <div className="text-[var(--foreground)] text-6xl mb-4">✓</div>
+          <img src="/check.png" alt="Success" className="w-24 mx-auto mb-6" />
           <h1 className="text-2xl font-bold text-[var(--foreground)] uppercase tracking-widest">
             Witness Recorded
           </h1>
@@ -277,7 +278,7 @@ export default function MintPage() {
 
         {/* Footer */}
         <p className="text-center text-[var(--foreground-muted)] text-xs">
-          Sepolia Testnet • Free Mint
+          ETHEREUM NETWORK
         </p>
       </div>
     </div>
