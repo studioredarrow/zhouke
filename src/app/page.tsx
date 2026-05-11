@@ -100,7 +100,6 @@ export default function MintPage() {
     setErrorMessage("");
 
     try {
-      // Use Thirdweb's claimTo extension for DropERC1155
       const transaction = claimTo({
         contract,
         to: account.address,
@@ -115,17 +114,48 @@ export default function MintPage() {
       console.error("Minting failed:", err);
       setMintState("error");
 
+      let rawMessage = "";
+
       if (err instanceof Error) {
-        // User-friendly error messages
-        if (err.message.includes("user rejected")) {
-          setErrorMessage("Transaction was cancelled.");
-        } else if (err.message.includes("insufficient funds")) {
-          setErrorMessage("Insufficient funds for this transaction.");
-        } else {
-          setErrorMessage("Something went wrong. Please try again.");
-        }
+        rawMessage = err.message;
+      } else if (typeof err === "string") {
+        rawMessage = err;
       } else {
-        setErrorMessage("Something went wrong. Please try again.");
+        rawMessage = JSON.stringify(err);
+      }
+
+      const message = rawMessage.toLowerCase();
+
+      if (
+        message.includes("user rejected") ||
+        message.includes("user denied") ||
+        message.includes("rejected the request")
+      ) {
+        setErrorMessage("Transaction was cancelled.");
+      } else if (message.includes("insufficient funds")) {
+        setErrorMessage("Insufficient funds for this transaction.");
+      } else if (
+        message.includes("max claimable") ||
+        message.includes("exceed") ||
+        message.includes("exceeds") ||
+        message.includes("limit") ||
+        message.includes("claim limit")
+      ) {
+        setErrorMessage("Wallet has reached the maximum witness allocation.");
+      } else if (
+        message.includes("claim condition") ||
+        message.includes("not started") ||
+        message.includes("not active")
+      ) {
+        setErrorMessage("Minting is not active yet.");
+      } else if (
+        message.includes("wrong network") ||
+        message.includes("chain") ||
+        message.includes("network")
+      ) {
+        setErrorMessage("Please switch your wallet to Sepolia Testnet.");
+      } else {
+        setErrorMessage("Transaction failed. Please check your wallet and try again.");
       }
     }
   };
