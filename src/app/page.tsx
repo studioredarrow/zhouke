@@ -20,7 +20,7 @@ import { client } from "./client";
 const CONTRACT_ADDRESS = process.env
   .NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`;
 const TOKEN_ID = 0n;
-const QUANTITY_OPTIONS = [1, 10, 50, 100];
+const QUANTITY_OPTIONS = [1, 47, 404, 999];
 
 // Contract instance
 const contract = getContract({
