@@ -10,7 +10,7 @@ import {
   useReadContract,
 } from "thirdweb/react";
 import { getContract } from "thirdweb";
-import { sepolia } from "thirdweb/chains";
+import { ethereum } from "thirdweb/chains";
 import { claimTo } from "thirdweb/extensions/erc1155";
 import { client } from "./client";
 
@@ -25,7 +25,7 @@ const QUANTITY_OPTIONS = [1, 47, 404, 999];
 // Contract instance
 const contract = getContract({
   client,
-  chain: sepolia,
+  chain: ethereum,
   address: CONTRACT_ADDRESS,
 });
 
@@ -153,7 +153,7 @@ export default function MintPage() {
         message.includes("chain") ||
         message.includes("network")
       ) {
-        setErrorMessage("Please switch your wallet to Sepolia Testnet.");
+        setErrorMessage("Please switch your wallet to Ethereum Mainnet.");
       } else {
         setErrorMessage("Transaction failed. Please check your wallet and try again.");
       }
@@ -196,7 +196,7 @@ export default function MintPage() {
             Your witness has been permanently inscribed on the blockchain.
           </p>
           <a
-            href={`https://sepolia.etherscan.io/tx/${txHash}`}
+            href={`https://etherscan.io/tx/${txHash}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-[var(--foreground)] underline text-sm hover:opacity-70 transition-opacity"
